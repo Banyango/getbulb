@@ -1,0 +1,46 @@
+:root {
+  --bulb-bg: #1e1f22; --bulb-surface: #2b2d30; --bulb-surface-hover: #393b40; --bulb-border: #393b40;
+  --bulb-text: #dfe1e5; --bulb-text-muted: #9da0a8; --bulb-accent: #3574f0; --bulb-attention: #e5a33d; --bulb-danger: #e55765;
+  --bulb-font: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; --bulb-font-mono: "JetBrains Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; overflow: hidden; background: var(--bulb-bg); color: var(--bulb-text); font: 13px var(--bulb-font); }
+button { font: inherit; color: inherit; }
+.app { height: 100%; position: relative; }
+.pane { display: flex; flex-direction: column; height: 100%; width: 100%; min-width: 0; min-height: 0; position: relative; }
+.pane-body { flex: 1; min-height: 0; position: relative; }
+.pane.attention::after { content: ""; position: absolute; inset: 0; border: 2px solid var(--bulb-attention); pointer-events: none; z-index: 5; }
+.split { display: flex; height: 100%; width: 100%; min-width: 0; min-height: 0; }
+.split.row { flex-direction: row; } .split.column { flex-direction: column; }
+.split-child { min-width: 0; min-height: 0; position: relative; overflow: hidden; }
+.divider { flex: 0 0 1px; background: var(--bulb-border); position: relative; z-index: 6; }
+.divider::before { content: ""; position: absolute; inset: 0 -3px; cursor: col-resize; }
+.column > .divider::before { inset: -3px 0; cursor: row-resize; }
+.divider:hover, .divider.dragging { background: var(--bulb-accent); }
+.tabbar { display: flex; flex: 0 0 30px; background: var(--bulb-surface); border-bottom: 1px solid var(--bulb-border); overflow-x: auto; scrollbar-width: none; }
+.tabitem { display: flex; align-items: center; gap: 6px; padding: 0 6px 0 12px; border: 0; background: none; color: var(--bulb-text-muted); cursor: default; white-space: nowrap; max-width: 220px; border-bottom: 2px solid transparent; }
+.tabitem:hover { background: var(--bulb-surface-hover); }
+.tabitem.active { color: var(--bulb-text); border-bottom-color: var(--bulb-border); }
+.focused .tabitem.active { border-bottom-color: var(--bulb-accent); }
+.tabitem .label { overflow: hidden; text-overflow: ellipsis; }
+.tabclose { border: 0; background: none; width: 18px; height: 18px; border-radius: 3px; color: var(--bulb-text-muted); padding: 0; line-height: 1; }
+.tabclose:hover { background: var(--bulb-border); color: var(--bulb-text); }
+.term-host, .term-el { position: absolute; inset: 0; background: var(--bulb-bg); }
+.term-el { padding: 4px 0 0 6px; }
+.toasts { position: absolute; right: 12px; bottom: 12px; display: flex; flex-direction: column; gap: 8px; z-index: 20; }
+.toast { text-align: left; width: 300px; padding: 10px 12px; border: 1px solid var(--bulb-border); border-left: 3px solid var(--bulb-attention); border-radius: 6px; background: var(--bulb-surface); box-shadow: 0 6px 20px #0006; cursor: pointer; }
+.toast:hover { background: var(--bulb-surface-hover); }
+.toast b { display: block; margin-bottom: 2px; font-weight: 600; }
+.toast span { color: var(--bulb-text-muted); overflow-wrap: anywhere; }
+.plugin-error { padding: 12px; color: var(--bulb-danger); font-size: 12px; overflow: auto; height: 100%; }
+.plugin-error pre { white-space: pre-wrap; font-family: var(--bulb-font-mono); margin: 6px 0 0; }
+.placeholder { padding: 16px; color: var(--bulb-text-muted); }
+.recovery { display: flex; flex-direction: column; height: 100%; }
+.recovery header { flex: 0 0 auto; padding: 8px 12px; background: var(--bulb-danger); color: #fff; font-weight: 600; }
+.bulb-button { padding: 4px 10px; border: 1px solid var(--bulb-border); border-radius: 4px; background: var(--bulb-surface); cursor: pointer; }
+.bulb-button:hover { background: var(--bulb-surface-hover); }
+.bulb-list { display: flex; flex-direction: column; overflow-y: auto; min-height: 0; }
+.bulb-list-item { display: flex; align-items: center; gap: 8px; width: 100%; padding: 6px 12px; border: 0; background: none; text-align: left; cursor: default; }
+.bulb-list-item:hover { background: var(--bulb-surface-hover); }
+.bulb-list-item.selected { background: color-mix(in srgb, var(--bulb-accent) 30%, transparent); }
+.bulb-badge { min-width: 16px; padding: 0 5px; border-radius: 8px; background: var(--bulb-attention); color: #1e1f22; font-size: 11px; font-weight: 600; text-align: center; }

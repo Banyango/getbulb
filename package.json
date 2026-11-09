@@ -1,0 +1,38 @@
+{
+  "name": "getbulb",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "dist/electron/main.cjs",
+  "bin": {
+    "bulb": "bin/bulb"
+  },
+  "scripts": {
+    "build": "vite build && node scripts/build-electron.mjs",
+    "start": "npm run build && electron .",
+    "web": "npm run build && node scripts/web.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/*.test.ts",
+    "test:e2e": "npm run build && electron test/e2e.cjs --no-sandbox --ozone-platform=headless --disable-gpu"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/addon-webgl": "^0.19.0",
+    "@xterm/xterm": "^6.0.0",
+    "node-pty": "^1.1.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "ws": "^8.22.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/ws": "^8.18.2",
+    "@vitejs/plugin-react": "^6.2.1",
+    "electron": "^45.2.3",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.6"
+  }
+}
